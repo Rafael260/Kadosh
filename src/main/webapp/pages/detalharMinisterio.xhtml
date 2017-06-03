@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{ministerioMB.carregarMembrosForaDoMinisterio()}" />
+            </f:metadata>
+            <p:layout>
+                <p:layoutUnit position="north" header="Informações do Ministério" style="font-size: 13px;text-align: center" >
+                    <h:form style="font-size: 15px">
+                        <p:panel style="font-size: 15px">
+                            <p:panelGrid>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Nome: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="#{ministerioMB.ministerio.nome}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="Líder: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="#{ministerioMB.ministerio.lider}"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Descrição " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column colspan="3">
+                                        <p:inputTextarea autoResize="true" disabled="true" value="#{ministerioMB.ministerio.descricao}"/>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" header="Lista de Membros" style="font-size: 13px;text-align: center">
+                    <h:form id="autocompleteMembro">
+                        <p:outputLabel value="Membro:" />
+                        <p:autoComplete id="aut" value="#{ministerioMB.membroSelecionado}" completeMethod="#{ministerioMB.completeMembroAutoComplete}"
+                                        var="membro" itemLabel="#{membro.nome}" itemValue="#{membro}" converter="omnifaces.SelectItemsConverter" 
+                                        forceSelection="true" dropdown="true"/>
+                        <p:commandButton value="Adicionar Membro" action="#{ministerioMB.adicionarMembro()}"/>
+
+                        <p:panel>
+                            <p:dataTable resizableColumns="true" var="membro" value="#{ministerioMB.ministerio.membrosMinisterio}">
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{membro.nome}"/>
+                                </p:column>
+                                <p:column headerText="Telefone">
+                                    <h:outputText value="#{membro.telefone}"/>
+                                </p:column>
+                                <p:column headerText="E-mail">
+                                    <h:outputText value="#{membro.email}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <p:commandButton value="Voltar" action="/pages/exibirMinisterios.xhtml?faces-redirect=true"/>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+        </ui:define>
+    </ui:composition>
+</html>

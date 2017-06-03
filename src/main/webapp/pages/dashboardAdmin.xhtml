@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{grupoMB.carregarLista()}" />
+            </f:metadata>
+            <!--            <p:outputLabel value="Sistema Kadosh"/>-->
+            <p:layout>
+                <p:layoutUnit position="center" closable="false" collapsed="false" resizable="false">
+                    <p:dataTable value="#{grupoMB.grupos}" var="gr" >
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{gr.tipo}" />
+                        </p:column>
+                        <p:column headerText="Local">
+                            <h:outputText value="#{gr.localReuniao}" />
+                        </p:column>
+                        <p:column headerText="Dia da Semana">
+                            <h:outputText value="#{gr.diaSemana}" />
+                        </p:column>
+                        <p:column headerText="Hora">
+                            <h:outputText value="#{gr.hora}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:layoutUnit>
+
+<!--                <p:layoutUnit position="west" size="100" closable="false" collapsed="false" resizable="false">
+                    <p:outputLabel value="West"/>
+                </p:layoutUnit>-->
+
+                <p:layoutUnit position="north" closable="false" collapsed="false" resizable="false">
+                    <p:outputLabel value="North"/>
+                </p:layoutUnit>
+
+<!--                <p:layoutUnit position="south" closable="false" collapsed="false" resizable="false">
+                    <p:outputLabel value="Sul"/>
+                </p:layoutUnit>-->
+
+<!--                <p:layoutUnit position="east" size="100" closable="false" collapsed="false" resizable="false">
+                    <p:outputLabel value="East"/>
+                </p:layoutUnit>-->
+
+            </p:layout>
+        </ui:define>
+    </ui:composition>
+</html>

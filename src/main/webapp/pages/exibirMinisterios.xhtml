@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{ministerioMB.carregarLista()}" />
+            </f:metadata>
+            <h:form>
+                <p:panel header="Ministérios Cadastrados" style="margin-bottom:20px;text-align:center" >
+                    <p:dataTable value="#{ministerioMB.ministerios}" var="min">
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{min.nome}"/>
+                        </p:column>
+                        <p:column headerText="Líder">
+                            <h:outputText value="#{min.lider}"/>
+                        </p:column>
+                            <p:column>
+                                <p:commandButton icon="ui-icon-search" action="#{ministerioMB.prepararConsulta(min)}">
+                                </p:commandButton>
+                                <p:commandButton icon="ui-icon-trash" title="Remover" actionListener="#{ministerioMB.deletar(min)}">
+                                    <p:confirm header="Confirmação" message="Tem certeza que deseja remover o ministério de #{min.toString()}?" icon="ui-icon-alert"/>
+                                </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                                </p:confirmDialog>
+
+                                <p:commandButton icon="ui-icon-pencil" title="Editar" action="#{ministerioMB.prepararEdicao(min)}">
+                                </p:commandButton>
+                            </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

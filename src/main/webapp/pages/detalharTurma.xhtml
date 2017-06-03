@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <h:form style="font-size: 15px">
+                <p:panel header="Informações da turma" style="margin-bottom:20px;text-align:center">
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value="Período Letivo:"/>
+                        <p:outputLabel value="#{turmaMB.turma.anoLetivo}"/>
+                        <p:outputLabel value="Disciplina: "/>
+                        <p:outputLabel value="#{turmaMB.turma.disciplina}"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    <!--selectOneMenu atribui ao membro.grupo o grupo selecionado dentre os possiveis valores de selectItens retornado pelo grupoBean
+                        Para que o membro realmente possua o objeto Grupo, eh preciso o omnifaces.SelectItensConverter, que faz papel de Adapter  -->
+</html>

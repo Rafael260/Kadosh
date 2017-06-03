@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{membroMB.carregarLista()}" />
+            </f:metadata>
+            <p:panel header="Membros cadastrados" style="margin-bottom:20px;text-align:center" >
+                <p:dataTable value="#{membroMB.membros}" var="membro">
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{membro.nome}" />
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <h:outputText value="#{membro.telefone}" />
+                    </p:column>
+                    <p:column headerText="Email">
+                        <h:outputText value="#{membro.email}" />
+                    </p:column>
+                    <p:column headerText="Grupo">
+                        <h:outputText value="#{membro.grupo}" />
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-search" title="Consultar" action="#{membroMB.prepararConsulta(membro)}">
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-trash"  action="#{membroMB.deletar(membro)}">
+                            <p:confirm header="Confirmação" message="Tem certeza que deseja remover o #{membro.nome}?" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                            </p:confirmDialog>
+                        <p:commandButton icon="ui-icon-pencil" action="#{membroMB.prepararEdicao(membro)}">
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>

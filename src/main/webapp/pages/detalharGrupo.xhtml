@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <h:form style="font-size: 15px">
+                <p:panel header="Informações do Grupo" style="margin-bottom:20px;text-align:center" >
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value="Tipo:"/>
+                        <p:outputLabel value="#{grupoMB.grupo.tipo}"/>
+                        <p:outputLabel value="Local"/>
+                        <p:outputLabel value="#{grupoMB.grupo.localReuniao}"/>
+                        <p:outputLabel value="Dia da semana:"/>
+                        <p:outputLabel value="#{grupoMB.grupo.diaSemana}"/>
+                        <p:outputLabel value="Hora:"/>
+                        <p:outputLabel value="#{grupoMB.grupo.hora}"/>
+                        <p:outputLabel value="Lider:"/>
+                        <p:outputLabel value="#{grupoMB.grupo.lider.nome}"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:panel header="Membros desse Grupo" style="margin-bottom:20px;text-align:center" >
+                        <p:dataTable resizableColumns="true" value="#{grupoMB.grupo.membrosGrupo}" var="membro">
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{membro.nome}" />
+                            </p:column>
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{membro.telefone}" />
+                            </p:column>
+                            <p:column headerText="Email">
+                                <h:outputText value="#{membro.email}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                    <br/>
+                    <p:commandButton value="Voltar" action="/pages/exibirGrupos.xhtml?faces-redirect=true"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+    <!--selectOneMenu atribui ao membro.grupo o grupo selecionado dentre os possiveis valores de selectItens retornado pelo grupoBean
+                        Para que o membro realmente possua o objeto Grupo, eh preciso o omnifaces.SelectItensConverter, que faz papel de Adapter  -->
+</html>

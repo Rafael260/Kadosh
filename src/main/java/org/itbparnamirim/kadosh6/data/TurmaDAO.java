@@ -1,0 +1,64 @@
+package org.itbparnamirim.kadosh6.data;
+
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.TypedQuery;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import org.itbparnamirim.kadosh6.model.Turma;
+
+/**
+ *
+ * @author Geraldo
+ */
+@Named
+@RequestScoped
+public class TurmaDAO extends TemplateDAO{
+    
+    public TurmaDAO() {
+    }
+
+    public Turma save(Turma turma) {
+        try {
+            userTransaction.begin();
+            if (turma.getId() == null) {
+                em.persist(turma);
+            } else {
+                em.merge(turma);
+            }
+            userTransaction.commit();
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
+            e.printStackTrace();
+        }
+        return turma;
+    }
+    
+    public Turma find(Integer id){
+        Turma turma = em.find(Turma.class, id);
+        return turma;
+    }
+
+    public List<Turma> list() {
+        TypedQuery<Turma> query = em.createQuery("select t from Turma t", Turma.class);
+        List<Turma> turmas = query.getResultList();
+        return turmas;
+    }
+
+    public void delete(Turma turma) throws IllegalStateException, SecurityException, SystemException, Exception {
+        try {
+            userTransaction.begin();
+            Turma t = em.find(Turma.class, turma.getId());
+            em.remove(t);
+            userTransaction.commit();
+        } catch (Exception e) {
+            userTransaction.rollback();
+            throw new Exception ("Houve um problema ao deletar a turma");
+        }
+    }
+    
+}

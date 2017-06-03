@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <h:form style="font-size: 15px">
+                <p:panel header="Cadastro de Grupo" style="margin-bottom:20px;text-align:center" >
+                    <p:panelGrid columns="4" style="border-style:none;margin-left: auto;margin-right: auto;text-align: left">
+                        <p:outputLabel value="Tipo: "/>
+                        <p:selectOneMenu id="tipo" value="#{grupoMB.grupo.tipo}">
+                            <f:selectItem itemLabel="Selecione" itemValue="" />
+                            <f:selectItem itemLabel="Adolescentes" itemValue="Adolescentes" />
+                            <f:selectItem itemLabel="Casais" itemValue="Casais" />
+                            <f:selectItem itemLabel="Jovens" itemValue="Jovens" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Local: "/>
+                        <p:inputText value="#{grupoMB.grupo.localReuniao}"/>
+                        <p:outputLabel value="Dia da semana: " for="diaSemana"/>
+                        <p:selectOneMenu id="diaSemana" value="#{grupoMB.grupo.diaSemana}">
+                            <f:selectItem itemLabel="Segunda" itemValue="Segunda" />
+                            <f:selectItem itemLabel="Terça" itemValue="Terça" />
+                            <f:selectItem itemLabel="Quarta" itemValue="Quarta" />
+                            <f:selectItem itemLabel="Quinta" itemValue="Quinta" />
+                            <f:selectItem itemLabel="Sexta" itemValue="Sexta" />
+                            <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+                            <f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+                        </p:selectOneMenu>
+                        <p:outputLabel for="time" value="Hora:" />
+                        <p:calendar id="time" value="#{grupoMB.grupo.hora}" pattern="HH:mm" timeOnly="true"  />
+                        <p:outputLabel value="Líder: "/>
+                        <p:selectOneMenu disabled="#{grupoMB.cadastrando}" value="#{grupoMB.grupo.lider}" converter="omnifaces.SelectItemsConverter" >
+                            <f:selectItem itemValue="#{null}" itemLabel="Sem líder"/>
+                            <f:selectItems value="#{grupoMB.getLideresDoGrupo()}" var="lider" itemValue="#{lider}" itemLabel="#{lider.nome}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
+                    <p:commandButton value="Salvar" action="#{grupoBean.salvar}"/>
+                </p:panel>
+                <br/>
+                
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

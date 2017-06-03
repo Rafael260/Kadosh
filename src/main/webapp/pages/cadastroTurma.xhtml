@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{disciplinaMB.carregarLista()}" />
+            </f:metadata>
+            <h:form style="font-size: 15px">
+                <p:panel header="Cadastro de Turma" style="margin-bottom:20px;text-align:center" >
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value="Periodo Letivo:"/>
+                        <p:inputText value="#{turmaMB.turma.anoLetivo}"/>
+                        <p:outputLabel value="Disciplina: "/>
+                        <p:selectOneMenu id="disciplina" value ="#{turmaMB.turma.disciplina}" converter="omnifaces.SelectItemsConverter" >
+                            <f:selectItems value="#{disciplinaMB.disciplinas}" var="disc" itemValue="#{disc}" itemLabel="#{disc.toString()}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
+                    <p:commandButton value="Salvar" action="#{turmaMB.salvar}"/>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

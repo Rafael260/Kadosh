@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{turmaMB.carregarLista()}" />
+            </f:metadata>
+            <p:panel header="Turmas cadastradas" style="margin-bottom:20px;text-align:center" >
+                <p:dataTable value="#{turmaMB.turmas}" var="turma">
+                    <p:column headerText="Periodo Letivo">
+                        <h:outputText value="#{turma.anoLetivo}" />
+                    </p:column>
+                    <p:column headerText="Disciplina">
+                        <h:outputText value="#{turma.disciplina}" />
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-search" title="Consultar" action="#{turmaMB.prepararConsulta(turma)}">
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-trash"  action="#{turmaMB.deletar(turma)}">
+                            <p:confirm header="Confirmação" message="Tem certeza que deseja remover o #{turma.toString()}?" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                            </p:confirmDialog>
+                        <p:commandButton icon="ui-icon-pencil" action="#{turmaMB.prepararEdicao(turma.id)}">
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
