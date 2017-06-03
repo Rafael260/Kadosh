@@ -16,13 +16,13 @@ import javax.persistence.Temporal;
 @Entity
 @NamedQuery(name = "findAllNoticias", query = "SELECT n FROM Noticia n")
 public class Noticia implements Serializable {
-    
+
     @GeneratedValue
     @Id
     private Integer id;
     private String manchete;
     private String textoDaNoticia;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date validade;
     private String destinatario;
@@ -37,7 +37,7 @@ public class Noticia implements Serializable {
 
     public Noticia() {
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -103,6 +103,9 @@ public class Noticia implements Serializable {
         return true;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Noticia{" + "manchete=" + manchete + '}';
+    }
+
 }
