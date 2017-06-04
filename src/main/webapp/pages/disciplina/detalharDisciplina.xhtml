@@ -19,7 +19,7 @@
                         <p:outputLabel value="#{disciplinaMB.disciplina.ciclo}"/>
                     </p:panelGrid>
                     <br/>
-                    <p:commandButton value="Voltar" action="/pages/exibirDisciplinas.xhtml?faces-redirect=true"/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
                 </p:panel>
             </h:form>
         </ui:define>

@@ -57,23 +57,22 @@ public class TurmaMB implements Serializable{
     
     public String prepararConsulta(Turma turma){
         this.turma = turma;
-        return "/pages/detalharTurma.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/turma/detalharTurma.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararEdicao(Integer id){
         Turma turmaSelecionada = turmaDAO.find(id);
         this.turma = turmaSelecionada;
-        return "/pages/cadastroTurma.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/turma/cadastroTurma.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararCadastro(){
         limparObjetos();
-        return "/pages/cadastroTurma.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/turma/cadastroTurma.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public void limparObjetos(){
         this.turma = new Turma();
-//        turma.setAnoLetivo("2000");
     }
     
     public String deletar(Turma turma){
@@ -93,6 +92,6 @@ public class TurmaMB implements Serializable{
     public String salvar(){
         turmaDAO.save(turma);
         limparObjetos();
-        return "/pages/exibirTurmas.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/turma/exibirTurmas.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 }

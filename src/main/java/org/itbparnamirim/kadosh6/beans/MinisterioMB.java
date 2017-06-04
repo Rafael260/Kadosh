@@ -74,7 +74,7 @@ public class MinisterioMB implements Serializable {
     public String salvar(){
         ministerio = ministerioDAO.save(ministerio);
         limparMinisterio();
-        return "/pages/exibirMinisterios.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/ministerio/exibirMinisterios.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     public void limparMinisterio() {
@@ -82,7 +82,7 @@ public class MinisterioMB implements Serializable {
     }
 
     public String deletar(Ministerio ministerio) {
-        String paginaDestino = "/pages/exibirMinisterios.xhtml";
+        String paginaDestino = "/pages/ministerio/exibirMinisterios.xhtml";
         try {
             ministerioDAO.delete(ministerio);
             ManagedBeanUtil.refresh();
@@ -94,12 +94,12 @@ public class MinisterioMB implements Serializable {
     
     public String prepararEdicao(Ministerio ministerio) {
         this.ministerio = ministerio;
-        return "/pages/cadastroMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/ministerio/cadastroMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     public String prepararCadastro() {
         limparMinisterio();
-        return "/pages/cadastroMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/ministerio/cadastroMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararConsulta(Ministerio ministerio){
@@ -108,7 +108,7 @@ public class MinisterioMB implements Serializable {
         if (this.ministerio.getId() == null){
             System.out.println("metodo prepararConsulta, id do ministerio NULO");
         }
-        return "/pages/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/ministerio/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     //Funcao sera usada quando a pagina for carregada, e entao teremos uma lista de membros que nao estao no ministerio em questao
@@ -137,7 +137,7 @@ public class MinisterioMB implements Serializable {
         this.ministerio.adicionarMembro(membroSelecionado);
         ministerioDAO.save(ministerio);
         ManagedBeanUtil.refresh();
-        return "/pages/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/ministerio/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     

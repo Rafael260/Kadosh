@@ -56,7 +56,7 @@ public class MembroMB implements Serializable {
     }
 
     public String salvar() {
-        String paginaDestino = "/pages/exibirMembros.xhtml";
+        String paginaDestino = "/pages/membro/exibirMembros.xhtml";
         try {
             boolean cadastrando = membro.getId() == null;
             membro = membroDAO.save(membro);
@@ -71,7 +71,7 @@ public class MembroMB implements Serializable {
     }
 
     public String deletar(Membro membro) {
-        String paginaDestino = "/pages/exibirMembros.xhtml";
+        String paginaDestino = "/pages/membro/exibirMembros.xhtml";
         try {
             Grupo grupo = membro.getGrupo();
             if (grupo.getLider().equals(membro)){
@@ -88,12 +88,12 @@ public class MembroMB implements Serializable {
     
     public String prepararEdicao(Membro membro){
         this.membro = membro;
-        return "/pages/cadastroMembro.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/membro/cadastroMembro.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararConsulta(Membro membro){
         this.membro = membro;
-        return "/pages/detalharMembro.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/membro/detalharMembro.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     private void limparObjetos(){
@@ -102,7 +102,7 @@ public class MembroMB implements Serializable {
     
     public String prepararCadastro(){
         limparObjetos();
-        return "/pages/cadastroMembro.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/membro/cadastroMembro.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public List<Membro> listarLideres(){

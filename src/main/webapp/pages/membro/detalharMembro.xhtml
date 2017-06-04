@@ -35,7 +35,7 @@
                         <p:outputLabel value="#{membroMB.membro.administrador}"/>
                     </p:panelGrid>
                     <br/>
-                    <p:commandButton value="Voltar" action="/pages/exibirMembros.xhtml?faces-redirect=true"/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
                 </p:panel>
             </h:form>
         </ui:define>

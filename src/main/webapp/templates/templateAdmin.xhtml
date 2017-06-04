@@ -35,22 +35,26 @@
                             </p:submenu>
                             <p:submenu label="Membros"> 
                                 <p:menuitem value="Cadastrar Membro" action="#{membroMB.prepararCadastro()}" />
-                                <p:menuitem value="Listar Membros" outcome="/pages/exibirMembros.xhtml"/>
+                                <p:menuitem value="Listar Membros" outcome="/pages/membro/exibirMembros.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Grupos">
                                 <p:menuitem value="Cadastrar Grupo" action="#{grupoMB.prepararCadastro()}"/>
-                                <p:menuitem value="Listar Grupos" outcome="/pages/exibirGrupos.xhtml"/>
+                                <p:menuitem value="Listar Grupos" outcome="/pages/grupo/exibirGrupos.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Ministério">
                                 <p:menuitem value="Cadastrar Ministério" action="#{ministerioMB.prepararCadastro()}"/>
-                                <p:menuitem value="Listar Ministérios" outcome="/pages/exibirMinisterios.xhtml"/>
+                                <p:menuitem value="Listar Ministérios" outcome="/pages/ministerio/exibirMinisterios.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Seminário">
                                 <p:menuitem value="Cadastrar Disciplina" action="#{disciplinaMB.prepararCadastro()}"/>
-                                <p:menuitem value="Listar Disciplinas" outcome="/pages/exibirDisciplinas.xhtml"/>
+                                <p:menuitem value="Listar Disciplinas" outcome="/pages/disciplina/exibirDisciplinas.xhtml"/>
                                 <p:menuitem value="Cadastrar Turma" action="#{turmaMB.prepararCadastro()}" />
-                                <p:menuitem value="Listar Turmas" outcome="/pages/exibirTurmas.xhtml"/>
+                                <p:menuitem value="Listar Turmas" outcome="/pages/turma/exibirTurmas.xhtml"/>
                                 
+                            </p:submenu>
+                            <p:submenu label="Eventos">
+                                <p:menuitem value="Cadastrar Evento" action="#{eventoMB.prepararCadastro()}" />
+                                <p:menuitem value="Listar Eventos" outcome="/pages/evento/exibirEventos.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Meditação">
                                 <p:menuitem value="Cadastrar Meditação"/>

@@ -60,7 +60,7 @@ public class GrupoMB implements Serializable {
     public String salvar() {
         grupo = grupoDAO.save(grupo);
         limparObjetos();
-        return "/pages/exibirGrupos.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/grupo/exibirGrupos.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     private void limparObjetos() {
@@ -68,7 +68,7 @@ public class GrupoMB implements Serializable {
     }
 
     public String deletar(Grupo grupo) {
-        String paginaDestino = "/pages/exibirGrupos.xhtml";
+        String paginaDestino = "/pages/grupo/exibirGrupos.xhtml";
         try {
             grupoDAO.delete(grupo);
             ManagedBeanUtil.refresh();
@@ -81,18 +81,18 @@ public class GrupoMB implements Serializable {
     public String prepararEdicao(Grupo grupo) {
         this.grupo = grupo;
         this.cadastrando = false;
-        return "/pages/cadastroGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/grupo/cadastroGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
     }
 
     public String prepararCadastro() {
         this.cadastrando = true;
         limparObjetos();
-        return "/pages/cadastroGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/grupo/cadastroGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararConsulta(Grupo grupo){
         this.grupo = grupo;
-        return "/pages/detalharGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/grupo/detalharGrupo.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public List<Membro> getLideresDoGrupo(){

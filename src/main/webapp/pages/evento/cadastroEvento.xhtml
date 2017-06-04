@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <h:form style="font-size: 15px">
+                <p:panel header="Cadastro de Evento" style="margin-bottom:20px;text-align:center" >
+                    <p:panelGrid columns="4" style="border-style:none;margin-left: auto;margin-right: auto;text-align: left">
+                        <p:outputLabel value="Nome: "/>
+                        <p:inputText value="#{eventoMB.evento.nome}"/>
+                        <p:outputLabel for="datetime" value="Datetime:" />
+                        <p:calendar id="datetime" value="#{eventoMB.evento.diaHora}" pattern="MM/dd/yyyy HH:mm:ss" />
+ 
+                        <p:outputLabel value="Local: "/>
+                        <p:inputText value="#{eventoMB.evento.localEvento}"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
+                    <p:commandButton value="Salvar" action="#{eventoMB.salvar()}"/>
+                </p:panel>
+                <br/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -43,19 +43,18 @@ public class DisciplinaMB implements Serializable{
     }
     
     public String salvar(){
-        String paginaDestino = "/pages/exibirDisciplinas.xhtml";
+        String paginaDestino = "/pages/disciplina/exibirDisciplinas.xhtml";
         try {
             disciplina = disciplinaDAO.save(disciplina);
             limparObjetos();
         } catch (NotSupportedException ex) {
-            paginaDestino = "/pages/dashboardAdmin.xhml";
+            paginaDestino = "/pages/disciplina/dashboardAdmin.xhml";
         }
         return paginaDestino+ManagedBeanUtil.REDIRECT;
     }
     
     public String deletar(Disciplina disciplina) {
-        System.out.println("Deletando disciplina....");
-        String paginaDestino = "/pages/exibirDisciplinas.xhtml";
+        String paginaDestino = "/pages/disciplina/exibirDisciplinas.xhtml";
         try {
             disciplinaDAO.delete(disciplina);
             ManagedBeanUtil.refresh();
@@ -71,19 +70,19 @@ public class DisciplinaMB implements Serializable{
     
     public String prepararConsulta(Disciplina disciplina){
         this.disciplina = disciplina;
-        return "/pages/detalharDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/disciplina/detalharDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararEdicao(Disciplina disciplina){
         this.disciplina = disciplina;
 //        this.cadastrando = false;
-        return "/pages/cadastroDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/disciplina/cadastroDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     public String prepararCadastro(){
         limparObjetos();
 //        this.cadastrando = true;
-        return "/pages/cadastroDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
+        return "/pages/disciplina/cadastroDisciplina.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
     private void limparObjetos(){
