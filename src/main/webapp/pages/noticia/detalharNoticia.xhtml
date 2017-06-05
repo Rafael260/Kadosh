@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <p:layout>
+                <p:layoutUnit position="center" header="Informações da Notícia" style="font-size: 13px;text-align: center" >
+                    <h:form style="font-size: 15px">
+                        <p:panel style="font-size: 15px">
+                            <p:panelGrid>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Manchete: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="#{noticiaMB.noticia.manchete}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="Validade: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:outputLabel value="#{noticiaMB.noticia.validade}"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Texto: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column colspan="3">
+                                        <p:inputTextarea autoResize="true" disabled="true" value="#{noticiaMB.noticia.textoDaNoticia}"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="Destinatário: " style="font-weight: bold"/>
+                                    </p:column>
+                                    <p:column colspan="3">
+                                        <p:inputTextarea autoResize="true" disabled="true" value="#{noticiaMB.noticia.destinatario}"/>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+        </ui:define>
+    </ui:composition>
+</html>

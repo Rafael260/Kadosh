@@ -25,6 +25,7 @@ public class Noticia implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date validade;
+    
     private String destinatario;
 
     public Noticia(Integer id, String manchete, String textoDaNoticia, Date validade, String destinatario) {
@@ -97,10 +98,7 @@ public class Noticia implements Serializable {
             return false;
         }
         final Noticia other = (Noticia) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
     
