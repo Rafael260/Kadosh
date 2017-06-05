@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <h:form style="font-size: 15px">
+                <p:panel header ="Cadastro de Notícia" style="text-align: center; margin-bottom: 20px">
+                    <p:panelGrid columns="2" style="border-style:none;margin-left: auto;margin-right: auto;text-align: left">
+                        <p:outputLabel value="Manchete"/>
+                        <p:inputText id="nome" value="#{noticiaMB.noticia.manchete}"/>
+                        <p:outputLabel value="Validade"/>
+                        <p:calendar id="maskValidade" value="#{noticiaMB.noticia.validade}" pattern="dd/MM/yyyy" mask="true" />
+                        <p:outputLabel value="Corpo da notícia: "/>
+                        <p:inputTextarea value="#{noticiaMB.noticia.textoDaNoticia}" rows="10" cols="50"/>
+                        <p:outputLabel value="Destinatário"/>
+                        <p:inputText id="dest" value="#{noticiaMB.noticia.destinatario}"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Voltar" onclick="history.go(-1)"/>
+                    <p:commandButton value="Salvar" action="#{noticiaMB.salvar}" />
+                </p:panel>
+                <br/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
