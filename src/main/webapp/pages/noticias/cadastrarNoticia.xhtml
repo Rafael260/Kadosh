@@ -12,17 +12,17 @@
                 <p:panel header="Cadastrar Notícia">
                     <p:panelGrid columns="2">
                         <p:outputLabel value="Manchete" for="manchete"/>
-                        <p:inputText id="manchete" value=""/>
+                        <p:inputText id="manchete" value="#{noticiaMB.noticia.manchete}"/>
                         <p:outputLabel value="Corpo da Notícia" for="corpo"/>
-                        <p:inputTextarea id="corpo" value="" rows="10" cols="50"/>
+                        <p:inputTextarea id="corpo" value="#{noticiaMB.noticia.textoDaNoticia}" rows="10" cols="50"/>
                         <p:outputLabel value="Destinatário" for="destinatario"/>
-                        <p:inputText id="destinatario" value=""/>
+                        <p:inputText id="destinatario" value="#{noticiaMB.noticia.destinatario}"/>
                         <p:outputLabel value="Validade" for="validade"/>
-                        <p:calendar value="" pattern="dd/MM/yyyy" mask="true" id="validade"/>
+                        <p:calendar value="#{noticiaMB.noticia.validade}" pattern="dd/MM/yyyy" mask="true" id="validade"/>
                     </p:panelGrid>
                 <br/>
                 <p:commandButton value="Voltar" onclick="history.go(-1)"/>
-                <p:commandButton value="Salvar"/>
+                <p:commandButton value="Salvar" action="#{noticiaMB.salvar()}"/>
                 </p:panel>
             </h:form>
         </ui:define>
