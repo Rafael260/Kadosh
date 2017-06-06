@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package converters;
 
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -15,16 +12,14 @@ import org.itbparnamirim.kadosh6.data.MembroDAO;
 import org.itbparnamirim.kadosh6.model.Membro;
 
 @Named
+@SessionScoped
 @FacesConverter(value = "membroConverter")
-public class MembroConverter implements Converter{
+public class MembroConverter implements Converter, Serializable{
 
     @Inject MembroDAO membroDAO;
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        if (value == null){
-            System.out.println("VALUE NULO");
-        }
         if (membroDAO == null){
             System.out.println("MEMBRO DAO NULO");
         }
@@ -37,5 +32,4 @@ public class MembroConverter implements Converter{
         Membro membro = (Membro) value;
         return String.valueOf(membro.getId());
     }
-    
 }

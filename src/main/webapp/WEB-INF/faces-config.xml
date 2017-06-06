@@ -8,5 +8,9 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <converter>
+            <converter-id>converter.MembroConverter</converter-id>
+            <converter-class>converters.MembroConverter</converter-class>
+        </converter>
     </application>
 </faces-config>
