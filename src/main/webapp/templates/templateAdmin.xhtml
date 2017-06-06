@@ -61,8 +61,8 @@
                                 <p:menuitem value="Listar Notícias" outcome="/pages/noticia/exibirNoticias.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Meditação">
-                                <p:menuitem value="Cadastrar Meditação"/>
-                                <p:menuitem value="Listar Meditações"/>
+                                <p:menuitem value="Cadastrar Meditação" action="#{meditacaoMB.prepararCadastro()}"/>
+                                <p:menuitem value="Listar Meditações" outcome="/pages/meditacao/exibirMeditacoes.xhtml" />
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>

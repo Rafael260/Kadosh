@@ -10,6 +10,7 @@
     <class>org.itbparnamirim.kadosh6.model.Turma</class>
     <class>org.itbparnamirim.kadosh6.model.Evento</class>
     <class>org.itbparnamirim.kadosh6.model.Noticia</class>
+    <class>org.itbparnamirim.kadosh6.model.Meditacao</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

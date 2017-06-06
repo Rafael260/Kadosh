@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+            <p:layout>
+                <p:layoutUnit position="center" header="Informações da meditação" style="font-size: 13px;text-align: center" >
+                    <h:form style="font-size: 15px">
+                        <p:outputLabel value="Título: " style="font-weight: bold"/>
+                        <p:outputLabel value="#{meditacaoMB.meditacao.titulo}"/>
+                        <br/>
+                        <p:outputLabel value="Dia da semana: " style="font-weight: bold"/>
+                        <p:outputLabel value="#{meditacaoMB.meditacao.diaSemana}"/>
+                        <br/>
+                        <p:outputLabel value="Aprofundando: " style="font-weight: bold"/>
+                        <p:inputTextarea autoResize="true" disabled="true" value="#{meditacaoMB.meditacao.aprofundando}"/>
+                        <br/>
+                        <p:outputLabel value="Versículos de apoio"/>
+                        <br/>
+                        <p:dataTable value="#{meditacaoMB.meditacao.versiculosDeApoio}" var="versiculo">
+                            <p:column>
+                                <h:outputLabel value="#{versiculo}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <br/>
+                        <p:outputLabel value="Ilustrando: " style="font-weight: bold"/>
+                        <p:inputTextarea autoResize="true" disabled="true" value="#{meditacaoMB.meditacao.ilustracao}"/>
+                        <br/>
+                        <p:outputLabel value="Decisões"/>
+                        <br/>
+                        <p:dataTable value="#{meditacaoMB.meditacao.decisoes}" var="decisao">
+                            <p:column>
+                                <h:outputLabel value="#{decisao}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+        </ui:define>
+    </ui:composition>
+</html>
