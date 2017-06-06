@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 //import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.itbparnamirim.kadosh6.data.MembroDAO;
@@ -19,7 +18,7 @@ import org.itbparnamirim.kadosh6.model.Ministerio;
  * @author Geraldo
  */
 @SessionScoped
-@ManagedBean
+@Named
 public class MinisterioMB implements Serializable {
 
     private Ministerio ministerio = new Ministerio();
@@ -27,14 +26,12 @@ public class MinisterioMB implements Serializable {
     private Membro membroSelecionado = new Membro();
     private List<Ministerio> ministerios = new ArrayList<>();
     
-    
     @Inject
     MinisterioDAO ministerioDAO;
 
     @Inject
     MembroDAO membroDAO;
     
-    @PostConstruct
     public void carregarLista() {
         this.ministerios = ministerioDAO.list();
     }
@@ -130,15 +127,17 @@ public class MinisterioMB implements Serializable {
     }
     
     public String adicionarMembro(){
-        if (membroSelecionado == null || membroSelecionado.getId() == null){
-            System.out.println("MEMBRO NAO FOI SELECIONADO");
-            return "/pages/dashboardAdmin.xhtml"+ManagedBeanUtil.REDIRECT;
-        }
         this.ministerio.adicionarMembro(membroSelecionado);
         ministerioDAO.save(ministerio);
         ManagedBeanUtil.refresh();
+        membroSelecionado = null;
         return "/pages/ministerio/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
     }
     
-    
+    public String removerMembro(Membro membro){
+        this.ministerio.removerMembro(membro);
+        ministerioDAO.save(ministerio);
+         ManagedBeanUtil.refresh();
+        return "/pages/ministerio/detalharMinisterio.xhtml"+ManagedBeanUtil.REDIRECT;
+    }
 }

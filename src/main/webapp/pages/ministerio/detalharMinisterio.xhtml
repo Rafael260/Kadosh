@@ -47,11 +47,14 @@
                     <h:form id="autocompleteMembro">
                         <p:outputLabel value="Membro:" />
                         <p:autoComplete id="aut" value="#{ministerioMB.membroSelecionado}" completeMethod="#{ministerioMB.completeMembroAutoComplete}"
-                                        var="membro" itemLabel="#{membro.nome}" itemValue="#{membro}" converter="omnifaces.SelectItemsConverter" 
-                                        forceSelection="true" dropdown="true"/>
+                                        var="membro" itemLabel="#{membro.nome}" itemValue="#{membro}" 
+                                        forceSelection="true" dropdown="true">
+                            <f:converter converterId="converter.MembroConverter" />
+                        </p:autoComplete>
                         <p:commandButton value="Adicionar Membro" action="#{ministerioMB.adicionarMembro()}"/>
-
-                        <p:panel>
+                    </h:form>
+                    <p:panel>
+                        <h:form>
                             <p:dataTable resizableColumns="true" var="membro" value="#{ministerioMB.ministerio.membrosMinisterio}">
                                 <p:column headerText="Nome">
                                     <h:outputText value="#{membro.nome}"/>
@@ -62,10 +65,21 @@
                                 <p:column headerText="E-mail">
                                     <h:outputText value="#{membro.email}"/>
                                 </p:column>
+                                <p:column>
+                                    <p:commandButton icon="ui-icon-trash" title="Remover membro" action="#{ministerioMB.removerMembro(membro)}">
+                                        <p:confirm header="Confirmação" message="Tem certeza que deseja remover o(a) #{membro.nome} desse ministério?" icon="ui-icon-alert"/>
+                                    </p:commandButton>
+
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                                    </p:confirmDialog>
+                                </p:column>
                             </p:dataTable>
                             <p:commandButton value="Voltar" onclick="history.go(-1)"/>
-                        </p:panel>
-                    </h:form>
+                        </h:form>
+                    </p:panel>
+
                 </p:layoutUnit>
 
             </p:layout>
