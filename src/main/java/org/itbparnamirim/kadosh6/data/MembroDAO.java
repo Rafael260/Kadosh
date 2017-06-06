@@ -78,15 +78,6 @@ public class MembroDAO extends TemplateDAO{
     }
 
     public List<Membro> getMembrosNaoNesseMinisterio(Ministerio ministerio) {
-//        TypedQuery<Membro> query = em.createQuery("Select m from Membro m where !m.ministerio.contains(ministerio", Membro.class);
-//        TypedQuery<Membro> query = em.createQuery("select m from Membro m inner join m.ministerios d where d != :ministerio", Membro.class);
-//        if (ministerio.getId() == null){
-//            System.out.println("Id do ministerio nulo!");
-//        }
-//        Ministerio min = em.find(Ministerio.class, ministerio.getId());
-//        query.setParameter("ministerio", min);
-//        List<Membro> membros = query.getResultList();
-//        return membros;
         List<Membro> todos = list();
         List<Membro> membrosMinisterio = getMembrosDoMinisterio(ministerio);
         List<Membro> naoDoMinisterio = new ArrayList<>();
