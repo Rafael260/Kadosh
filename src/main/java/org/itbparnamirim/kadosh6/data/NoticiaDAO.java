@@ -44,7 +44,8 @@ public class NoticiaDAO extends TemplateDAO {
     public void delete(Noticia noticia) throws IllegalStateException, SecurityException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
         try {
             userTransaction.begin();
-            em.remove(noticia);
+            Noticia noticiaAdeletar = em.find(Noticia.class, noticia.getId());
+            em.remove(noticiaAdeletar);
             userTransaction.commit();
         } catch (Exception e) {
             userTransaction.rollback();

@@ -29,6 +29,10 @@ public class NoticiaMB implements Serializable {
     @Inject
     NoticiaDAO noticiaDAO;
 
+    public void carregarLista(){
+        this.noticias = noticiaDAO.list();
+    }
+    
     public Noticia getNoticia() {
         return noticia;
     }
@@ -68,10 +72,12 @@ public class NoticiaMB implements Serializable {
         try {
             noticiaDAO.delete(noticia);
             ManagedBeanUtil.refresh();
+            System.out.println("Notícia deletada com sucesso!");
         } catch (IllegalStateException | SecurityException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException ex) {
             Logger.getLogger(NoticiaMB.class.getName()).log(Level.SEVERE, null, ex);
             pagDestino = "/pages/dashboardAdmin.xhtml";
         }
+        System.out.println(pagDestino+ManagedBeanUtil.REDIRECT);
         return pagDestino + ManagedBeanUtil.REDIRECT;
     }
     

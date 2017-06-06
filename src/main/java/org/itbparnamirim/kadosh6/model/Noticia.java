@@ -105,7 +105,7 @@ public class Noticia implements Serializable {
 
     @Override
     public String toString() {
-        return "Noticia{" + "manchete=" + manchete + '}';
+        return "Noticia " + this.manchete;
     }
 
 }

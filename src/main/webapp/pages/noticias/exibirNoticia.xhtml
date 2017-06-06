@@ -5,12 +5,44 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition template="/templates/templateAdmin.xhtml">
         <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewAction action="#{noticiaMB.carregarLista()}" />
+            </f:metadata>
             <h:form>
-                <p:outputLabel value="#{noticiaMB.noticia.manchete}"/>
-                <p:outputLabel value="#{noticiaMB.noticia.textoDaNoticia}"/>
+                <p:panel header="Notícias cadastradas" style="margin-bottom:20px;text-align:center" >
+                    <p:dataTable value="#{noticiaMB.noticias}" var="notic" >
+                        <p:column headerText="Manchete">
+                            <h:outputText value="#{notic.manchete}" />
+                        </p:column>
+                        <p:column headerText="Texto">
+                            <h:outputText value="#{notic.textoDaNoticia}" />
+                        </p:column>
+                        <p:column headerText="Destinatário">
+                            <h:outputText value="#{notic.destinatario}" />
+                        </p:column>
+                        <p:column headerText="Validade">
+                            <h:outputText value="#{notic.validade}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandButton icon="ui-icon-search" title="Consultar" action="#{noticiaMB.prepararConsulta(notic)}">
+                        </p:commandButton>
+                            <p:commandButton icon="ui-icon-trash" title="Remover" actionListener="#{noticiaMB.deletar(notic)}">
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja remover #{notic.toString()}?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                            </p:confirmDialog>
+
+                            <p:commandButton icon="ui-icon-pencil" title="Editar" action="#{noticiaMB.prepararEdicao(notic)}">
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
             </h:form>
         </ui:define>
     </ui:composition>
