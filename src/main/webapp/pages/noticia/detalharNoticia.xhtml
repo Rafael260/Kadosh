@@ -8,6 +8,10 @@
 
     <ui:composition template="/templates/templateAdmin.xhtml">
         <ui:define name="conteudo">
+            <f:metadata>
+                <f:viewParam name="noticiaId" value="#{noticiaMB.noticia.id}" />
+                <f:viewAction action="#{noticiaMB.carregarNoticia(noticiaMB.noticia.id)}"/>
+            </f:metadata>
             <p:layout>
                 <p:layoutUnit position="center" header="Informações da Notícia" style="font-size: 13px;text-align: center" >
                     <h:form style="font-size: 15px">

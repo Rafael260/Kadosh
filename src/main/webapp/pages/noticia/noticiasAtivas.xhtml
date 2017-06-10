@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/templateAdmin.xhtml">
+        <ui:define name="leste">
+            <h:form>
+                <f:metadata>
+                    <f:viewAction action="#{noticiaMB.carregarAtivas()}" onPostback="true"/>
+                </f:metadata>
+                <h:form>
+                    <p:panel style="margin-bottom:20px;text-align:center" >
+                        <p:dataTable value="#{noticiaMB.noticias}" var="noticia">
+                            <p:column headerText="Manchete">
+                                <p:link value="#{noticia.manchete}" outcome="/pages/noticia/detalharNoticia.xhtml">
+                                    <f:param name="noticiaId" value="#{noticia.id}"/>
+                                </p:link>
+                                <h:outputText value="#{noticia.manchete}"/>
+                            </p:column>
+                            </h:form>
+                            </ui:define>
+                            </ui:composition>
+                            </html>

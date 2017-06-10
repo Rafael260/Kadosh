@@ -1,4 +1,5 @@
 package org.itbparnamirim.kadosh6.data;
+import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -52,5 +53,14 @@ public class NoticiaDAO extends TemplateDAO{
             userTransaction.rollback();
             throw new Exception("Houve um problema ao deletar a notícia");
         }
+    }
+    
+    public List<Noticia> carregarAtivas(){
+            List<Noticia> noticiasAtivas;
+            Date dataAtual = new Date(System.currentTimeMillis());
+            TypedQuery<Noticia> query = em.createQuery("SELECT n FROM Noticia n WHERE n.validade > :dataAtual", Noticia.class);
+            query.setParameter("dataAtual", dataAtual);
+            noticiasAtivas = query.getResultList();
+            return noticiasAtivas;
     }
 }

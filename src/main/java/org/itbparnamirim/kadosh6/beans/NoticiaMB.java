@@ -92,4 +92,12 @@ public class NoticiaMB implements Serializable{
         return "";
     }
     
+    public void carregarNoticia(int id){
+        this.noticia = noticiaDAO.find(id);
+    }
+    
+    public void carregarAtivas(){
+        noticiaDAO.carregarAtivas();
+    }
+    
 }
