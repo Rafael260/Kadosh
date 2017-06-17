@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -46,6 +47,9 @@ public class Membro implements Serializable {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Turma> turmas;
+    
+    @OneToMany
+    private List<Matricula> matriculas;
 
     public Membro() {
         nome = "";
@@ -201,6 +205,16 @@ public class Membro implements Serializable {
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+    
+    
 
     public void adicionarMinisterio(Ministerio ministerio) {
         this.ministerios.add(ministerio);

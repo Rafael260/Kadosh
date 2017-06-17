@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Turma implements Serializable {
@@ -27,19 +28,35 @@ public class Turma implements Serializable {
     
     private String anoLetivo;
     
+    @OneToMany
+    private List<Matricula> matriculas;
+    
     //Many to many pra que um mesmo membro esteja associado no banco com varias turmas.. pra pegar seu historico, e uma turma ter varios alunos eh trivial
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy="turmas", cascade=CascadeType.ALL)
-    private List<Membro> alunos;
+    @ManyToMany //(fetch = FetchType.EAGER, mappedBy="turmas", cascade=CascadeType.ALL)
+    private List<Membro> professores;
+
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+    
+    
 
     public Turma() {
     }
 
-    public Turma(Integer id, Disciplina disciplina, String anoLetivo, List<Membro> alunos) {
+    public Turma(Integer id, Disciplina disciplina, String anoLetivo, List<Matricula> matriculas, List<Membro> professores) {
         this.id = id;
         this.disciplina = disciplina;
         this.anoLetivo = anoLetivo;
-        this.alunos = alunos;
+        this.matriculas = matriculas;
+        this.professores = professores;
     }
+
 
     public Integer getId() {
         return id;
@@ -65,12 +82,12 @@ public class Turma implements Serializable {
         this.anoLetivo = anoLetivo;
     }
 
-    public List<Membro> getAlunos() {
-        return alunos;
+    public List<Membro> getProfessores() {
+        return professores;
     }
 
-    public void setAlunos(List<Membro> alunos) {
-        this.alunos = alunos;
+    public void setAlunos(List<Membro> professores) {
+        this.professores = professores;
     }
     
     @Override

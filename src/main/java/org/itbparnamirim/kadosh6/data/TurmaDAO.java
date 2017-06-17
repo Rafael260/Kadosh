@@ -1,15 +1,23 @@
 package org.itbparnamirim.kadosh6.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.criterion.MatchMode;
+import org.itbparnamirim.kadosh6.model.Membro;
 import org.itbparnamirim.kadosh6.model.Turma;
 
 /**
@@ -18,8 +26,8 @@ import org.itbparnamirim.kadosh6.model.Turma;
  */
 @Named
 @RequestScoped
-public class TurmaDAO extends TemplateDAO{
-    
+public class TurmaDAO extends TemplateDAO {
+
     public TurmaDAO() {
     }
 
@@ -37,8 +45,8 @@ public class TurmaDAO extends TemplateDAO{
         }
         return turma;
     }
-    
-    public Turma find(Integer id){
+
+    public Turma find(Integer id) {
         Turma turma = em.find(Turma.class, id);
         return turma;
     }
@@ -57,8 +65,32 @@ public class TurmaDAO extends TemplateDAO{
             userTransaction.commit();
         } catch (Exception e) {
             userTransaction.rollback();
-            throw new Exception ("Houve um problema ao deletar a turma");
+            throw new Exception("Houve um problema ao deletar a turma");
         }
     }
-    
+
+    public List<Membro> buscarProfessorPorNome(String nome) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Membro> criteriaQuery = builder.createQuery(Membro.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        Root<Membro> membroRoot = criteriaQuery.from(Membro.class);
+
+        if (StringUtils.isNotBlank(nome)) {
+            predicates.add(builder.equal(membroRoot.get("nome"), nome));
+        }
+
+        if (StringUtils.isNotBlank(nome)) {
+            predicates.add(builder.like(membroRoot.<String>get("nome"),
+                    "%" + nome.toLowerCase() + "%"));
+        }
+
+        criteriaQuery.select(membroRoot);
+        criteriaQuery.where(predicates.toArray(new Predicate[0]));
+
+        TypedQuery<Membro> query = em.createQuery(criteriaQuery);
+
+        return query.getResultList();
+    }
+
 }
