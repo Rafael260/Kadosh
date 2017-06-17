@@ -15,6 +15,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.SystemException;
 import org.itbparnamirim.kadosh6.data.TurmaDAO;
+import org.itbparnamirim.kadosh6.model.Membro;
 import org.itbparnamirim.kadosh6.model.Turma;
 
 /**
@@ -93,5 +94,9 @@ public class TurmaMB implements Serializable{
         turmaDAO.save(turma);
         limparObjetos();
         return "/pages/turma/exibirTurmas.xhtml"+ManagedBeanUtil.REDIRECT;
+    }
+    
+    public List<Membro> completarProfessor(String nome){
+        return turmaDAO.buscarProfessorPorNome(nome);
     }
 }

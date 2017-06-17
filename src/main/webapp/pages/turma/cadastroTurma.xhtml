@@ -20,6 +20,10 @@
                         <p:selectOneMenu id="disciplina" value ="#{turmaMB.turma.disciplina}" converter="omnifaces.SelectItemsConverter" >
                             <f:selectItems value="#{disciplinaMB.disciplinas}" var="disc" itemValue="#{disc}" itemLabel="#{disc.toString()}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="Professor"/>
+                        <p:autoComplete id="professor" value="#{turmaMB.turma.professores}"
+                                        completeMethod="#{turmaMB.completarProfessor}" var="prof" itemLabel="#{prof.nome}"
+                                        itemValue="#{prof}" forceSelection="true" converter="omnifaces.SelectItemsConverter"/>
                     </p:panelGrid>
                     <br/>
                     <p:commandButton value="Voltar" onclick="history.go(-1)"/>
