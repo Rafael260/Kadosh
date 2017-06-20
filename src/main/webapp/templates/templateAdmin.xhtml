@@ -25,6 +25,7 @@
                                                 <div class="ui-g-12" style="color: white;background-color: #191970">Igreja Tabernáculo Batista</div>
                                             </div>
                                         </div>-->
+                    <p:outputLabel value="Olá, #{loginMB.membroLogado.nome}!"/>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="250" header="Menu Principal" style="font-size: 15px;border-style: none" resizable="true" closable="false" collapsible="true">
@@ -50,7 +51,7 @@
                                 <p:menuitem value="Listar Disciplinas" outcome="/pages/disciplina/exibirDisciplinas.xhtml"/>
                                 <p:menuitem value="Cadastrar Turma" action="#{turmaMB.prepararCadastro()}" />
                                 <p:menuitem value="Listar Turmas" outcome="/pages/turma/exibirTurmas.xhtml"/>
-                                
+
                             </p:submenu>
                             <p:submenu label="Eventos">
                                 <p:menuitem value="Cadastrar Evento" action="#{eventoMB.prepararCadastro()}" />
@@ -63,6 +64,9 @@
                             <p:submenu label="Meditação">
                                 <p:menuitem value="Cadastrar Meditação" action="#{meditacaoMB.prepararCadastro()}"/>
                                 <p:menuitem value="Listar Meditações" outcome="/pages/meditacao/exibirMeditacoes.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Sistema">
+                                <p:menuitem value="Sair" action="#{loginMB.sair}" />
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
