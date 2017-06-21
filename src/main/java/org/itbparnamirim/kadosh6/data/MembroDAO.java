@@ -3,6 +3,8 @@ package org.itbparnamirim.kadosh6.data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.TypedQuery;
@@ -27,6 +29,31 @@ public class MembroDAO extends TemplateDAO{
             em.merge(membro);
         }
         userTransaction.commit();
+        return membro;
+    }
+    
+    public Membro autenticar(String usuario, String senha){
+        try {
+            userTransaction.begin();
+        } catch (NotSupportedException | SystemException ex) {
+            Logger.getLogger(MembroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        TypedQuery<Membro> query = em.createQuery("select m from Membro m where m.usuario=:usuario and m.senha=:senha", Membro.class);
+        query.setParameter("usuario", usuario);
+        query.setParameter("senha", senha);
+        Membro membro = null;
+        try{
+           membro = query.getSingleResult();
+        }catch(javax.persistence.NoResultException e){
+            System.out.println("Usuario/Senha inválidos");
+        }
+        try {
+            userTransaction.commit();
+        } catch (RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException | SystemException ex) {
+            Logger.getLogger(MembroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
         return membro;
     }
 
